@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
   List<StudentRecord> _student = [];
 
   File? _selectedImage;
+  
   final ImagePicker _picker = ImagePicker();
 
   Future<void> loadStudent() async {
