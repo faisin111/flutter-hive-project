@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hive_project/model/studentrecord.dart';
 import 'package:hive_project/view/home.dart';
@@ -10,12 +11,12 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(StudentRecordAdapter());
   await Hive.openBox<StudentRecord>('student_box');
-  runApp(MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
- 
+
   Future<bool> checkLogin() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool('loggin') ?? false;
